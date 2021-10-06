@@ -4,13 +4,20 @@ module.exports = {
     title: "My First Gatsby Site",
   },
   plugins: [
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
     {
       resolve: 'gatsby-plugin-html-attributes',
       options: {
-        lang: 'en-US'
-      }
-    }
+        lang: 'en-US',
+      },
+    },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `blog`,
+        path: `${__dirname}/blog`,
+      },
+    },
   ],
 };
