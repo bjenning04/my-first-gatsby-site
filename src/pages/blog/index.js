@@ -14,6 +14,9 @@ const BlogPage = ({ data }) => {
                             </Link>
                         </h2>
                         <p>Posted: {node.frontmatter.date}</p>
+                        <div>
+                            {node.excerpt}
+                        </div>
                     </article>
                 ))
             }
@@ -31,6 +34,7 @@ export const query = graphql`
                 }
                 id
                 slug
+                excerpt(pruneLength: 50)
             }
         }
     }
