@@ -1,0 +1,27 @@
+---
+title: "Methods to Retrieve Item from Collection with One and Only One Element"
+date: "2022-02-11"
+---
+
+## Java 7 or Older
+
+```java
+final List<String> set = Collections.singleton("test");
+final String only1 = set.size() == 1 ? set.iterator().next() : null;
+final String only2 = set.size() == 1 ? set.toArray(new String[0])[0];
+```
+
+## Java 8 Using Streams
+
+```java
+final List<String> set = Collections.singleton("test");
+final String only = set.stream().collect(Collectors.reducing((a, b) -> null));
+```
+
+## Google Guava
+
+```java
+final List<String> set = Collections.singleton("test");
+final String only1 = Iterables.getOnlyElement(set);
+final String only2 = set.stream().collect(MoreCollectors.onlyElement());
+```
