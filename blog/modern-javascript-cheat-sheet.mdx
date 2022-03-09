@@ -1,0 +1,81 @@
+---
+title: "Modern JavaScript Cheat Sheet"
+date: "2022-03-09"
+---
+
+## Variables and Block Scopes
+
+If you define a `var` inside of a block scope, that `var` leaks and is accessible outside of that block scope. For example:
+```javascript
+{
+    var a = 1;
+}
+
+if (true) {
+    var b = 2:
+}
+
+for (var i = 1; i <=10; i++) {
+    
+}
+
+a;
+b;
+i;
+```
+
+Will output:
+```
+1
+2
+11
+```
+
+However, `var`s defined within a function scope are not accessible outside of that function. For example, the following will throw an error that `result` is not defined:
+```javascript
+function sum(a, b) {
+    var result = a + b;
+}
+
+sum(4, 3);
+result;   // ReferenceError: result is not defined
+```
+
+We can fix this behavior of `var`s leaking outside of the defined block scopes by replacing `var` with `let` or `const`. For example, the following will throw an error that `i` is not defined:
+```javascript
+if (true) {
+    let a = 1;
+    const b = 2;
+}
+
+a;   // ReferenceError: a is not defined
+b;   // ReferenceError: b is not defined
+```
+
+Variables declared with the `let` keyword have a mutable reference to an object, and variables declared with the `const` keyword have an immutable reference to an object. However, variables defined with both keywords can still refer to mutable objects. For example, the following is still valid since the reference to `numbers` does not change.
+```javascript
+const numbers = [2, 4, 6];
+numbers.push(8);
+```
+
+Block scopes can also be nested. Block scopes limit the scope of functions and variables as long as the `let` and `const` keywords are used.
+```javascript
+{
+    // Block scope
+    {
+        // Nested block scope
+    }
+}
+```
+
+## Arrow Functions
+
+## Object Literals
+
+## Destructuring and Rest/Spread
+
+## Template Strings
+
+## Classes
+
+## Promises and Async/Await
